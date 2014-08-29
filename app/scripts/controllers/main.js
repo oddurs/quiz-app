@@ -49,6 +49,19 @@ angular.module('quizApp')
 	    }
 	  ];
 
+	  $scope.options = [];
+	  $scope.addOption = function () {
+	  	$scope.options.push({value:''});
+	  };
+	  $scope.addQuestion = function() {
+	  	var newQuestion = {};
+	  	newQuestion.q = $scope.q;
+	  	newQuestion.answer = $scope.answer;
+	  	newQuestion.options = $scope.options;
+	  	newQuestion.difficulty = +$scope.difficulty;
+	  	$scope.quiz.push(newQuestion);
+	  }
+
 	  $scope.valueToOrderBy = 'difficulty';
 
 	  $scope.checkAnswer = function(selectedValue, question) {

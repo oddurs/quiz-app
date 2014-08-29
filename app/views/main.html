@@ -4,6 +4,16 @@
       <input type="text" ng-model="valueToOrderBy">
 
       <h2>Your score is {{score.value}}</h2>
+
+      <div class="jumbotron new-question">
+        <h2>Create a New Question</h2>
+        Question Text: <input type="text" ng-model="q"><br>
+        Options: <input ng-repeat="option in options" type="text" ng-model="option.value"><button class="btn btn-danger" ng-click="addOption()">+</button><br>
+        Answer: <input type="text" ng-model="answer"><br>
+        Difficulty: <input type="text" ng-model="difficulty">
+        <button ng-click="addQuestion()">Add Question</button>
+      </div>
+
       <div class="jumbotron question" ng-repeat="question in quiz | orderBy: valueToOrderBy">
         <form action="">
           <h2>{{question.q}}</h2>
