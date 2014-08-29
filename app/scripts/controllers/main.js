@@ -8,6 +8,11 @@
  * Controller of the quizApp
  */
 angular.module('quizApp')
+
+	.controller('MasterCtrl', function($scope) {
+		$scope.score = {value:0};
+	})
+
   .controller('MainCtrl', function ($scope) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
@@ -18,21 +23,40 @@ angular.module('quizApp')
 	    { 
 	      "q": "Who is the best ping pong player at FSA?", 
 	      'options': [{ 'value': "Mike"} , { 'value': "Eddie"} , {'value' : "Nimit"} , { 'value': "Patrick"}],
-	      'answer': "Nimit" 
+	      'answer': "Nimit",
+	      'difficulty': 1,
+	      'answered': false 
 	    },
 	    { "q": "Which robot name was chanted during Lego Mindstorms?", 
 	      'options':[{ 'value': 'infiniteLoop'} , { 'value': 'noHope.js'} , {'value' : 'johnny5'} , { 'value': 'none of the above'}], 
-	      'answer':'noHope.js'
+	      'answer':'noHope.js',
+	      'difficulty': 3,
+	      'answered': false 
 	    },
 	    { 
 	      'q': "Out of the following frontend frameworks, which framework is most rails-like", 
 	      'options':[{ 'value': 'Ember.js'} ,{ 'value': 'Angular.js'} , {'value' : 'Backbone.js'} , { 'value': 'Meteor.js'}], 
-	      'answer':'Ember.js'
+	      'answer':'Ember.js',
+	      'difficulty': 2,
+	      'answered': false 
 	    },
 	    { 
 	      'q': "Which project used a local data store?", 
 	      'options':[{ 'value': 'TripPlanner'} ,{ 'value': 'Twitter.js'} , {'value' : 'WikiWalker'} , { 'value': 'WikiStack'}], 
-	      'answer':'Twitter.js'
+	      'answer':'Twitter.js',
+	      'difficulty': 1,
+	      'answered': false 
 	    }
 	  ];
+
+	  $scope.valueToOrderBy = 'difficulty';
+
+	  $scope.checkAnswer = function(selectedValue, question) {
+	  	if(selectedValue === question.answer && question.answered !== true) {
+	  		$scope.score.value++;
+	  	}
+  		question.answered = true;
+	  };
+
+	  // $scope.score = 0;
   });
